@@ -11,5 +11,8 @@
   "homePage.mainBody.section.2": "Na siłowni, podczas biegania, domowych porządków, czy jazdy samochodem. Audiobooki będą towarzyszyć Ci {subtitle1}. A Ty... nie zmarnujesz ani chwili - {subtitle2} bądź poznając kolejną {subtitle3}",
   "homePage.mainBody.section.2.subtitle1": "wszędzie",
   "homePage.mainBody.section.2.subtitle2": "rozwijając swoje umiejętności",
-  "homePage.mainBody.section.2.subtitle3": "wciągającą historię!"
+  "homePage.mainBody.section.2.subtitle3": "wciągającą historię!",
+  "carouselSlider.description": "OPIS",
+  "carouselSlider.musicListener": "SŁUCHAJ",
+  "carouselSlider.chapters": "ROZDZIAŁY"
 }

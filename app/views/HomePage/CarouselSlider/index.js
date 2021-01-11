@@ -1,16 +1,29 @@
 import React from 'react';
-import { Text } from 'rebass/styled-components';
-import { COLORS } from 'consts';
 
-import { StyledBorder, StyledContainer } from './styledComponents';
+import {
+  StyledTopBorder,
+  StyledBottomBorder,
+  StyledContainer,
+} from './styledComponents';
+
+import HeaderRow from './Rows/Row1';
+import SelectorRow from './Rows/Row2';
+import SliderRow from './Rows/Row3';
+import PlayerRow from './Rows/Row4';
+import FooterRow from './Rows/Row5';
 
 const CarouselSlider = () => (
   <StyledContainer>
-    <StyledBorder>
-      <Text color={COLORS.black} fontSize="1rem">
-        adasdas
-      </Text>
-    </StyledBorder>
+    <StyledTopBorder>
+      <HeaderRow />
+    </StyledTopBorder>
+
+    <StyledBottomBorder>
+      <SelectorRow />
+      <SliderRow />
+      <PlayerRow />
+      <FooterRow />
+    </StyledBottomBorder>
   </StyledContainer>
 );
 
