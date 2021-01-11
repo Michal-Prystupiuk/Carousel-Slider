@@ -5,8 +5,7 @@ import { Flex } from 'rebass/styled-components';
 import { COLORS } from 'consts';
 import emptyForm from 'images/empty_form.png';
 
-export const StyledContainer = styled(Flex)`
-  flex-direction: column;
+export const StyledBackground = styled(Flex)`
   width: 330px;
   height: 636px;
   background-image: url(${emptyForm});
@@ -14,8 +13,12 @@ export const StyledContainer = styled(Flex)`
   background-repeat: no-repeat;
 `;
 
-export const StyledTopBorder = styled(Flex)`
+export const StyledContainer = styled(Flex)`
   flex-direction: column;
+  margin-left: 30px;
+`;
+
+export const StyledHeader = styled(Flex)`
   width: 269px;
   height: 52px;
   background-image: linear-gradient(
@@ -24,26 +27,37 @@ export const StyledTopBorder = styled(Flex)`
     ${COLORS.brown} 10%
   );
   background-color: ${COLORS.darkBrown};
-  margin-left: 30px;
   margin-top: 40px;
   border-radius: 25px 25px 0px 0px;
   padding: 5px 10px 10px;
   color: ${COLORS.white};
 `;
 
-export const StyledBottomBorder = styled(Flex)`
+export const StyledBody = styled(Flex)`
   flex-direction: column;
   width: 269px;
-  height: 450px;
+  height: 410px;
   background-image: linear-gradient(
     ${COLORS.lightBrown} 8%,
     ${COLORS.lightPurple},
     ${COLORS.lightBlack},
     ${COLORS.darkPurple}
   );
-  margin-left: 30px;
-  border-radius: 0px 0px 25px 25px;
   padding: 0px 10px 10px;
+  color: ${COLORS.white};
+`;
+
+export const StyledFooter = styled(Flex)`
+  flex-direction: column;
+  width: 269px;
+  height: 40px;
+  background-image: linear-gradient(
+    ${COLORS.lightBlack},
+    ${COLORS.lightPurple}
+  );
+  border-radius: 0px 0px 25px 25px;
+  border-top: 2px solid ${COLORS.dividerColor};
+  padding: 5px 10px 10px;
   color: ${COLORS.white};
 `;
 

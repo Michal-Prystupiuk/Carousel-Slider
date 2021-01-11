@@ -1,12 +1,12 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Text, Flex, Button } from 'rebass/styled-components';
-import emptyForm from 'images/empty_form.png';
 
 import { StyledBody, StyledBodyContainer } from './styledComponents';
+import CarouselSlider from '../../../components/CarouselSlider';
 
 const MainBody = () => {
-  console.log(emptyForm);
+  console.log('hello');
 
   return (
     <StyledBody>
@@ -62,13 +62,7 @@ const MainBody = () => {
           </Text>
         </Flex>
 
-        <Flex maxWidth="555px" justifyContent="center" alignItems="center">
-          <img src={emptyForm} alt="emptyForm" width="330px" />
-        </Flex>
-
-        {/* <StyledSliderContainer>
-          <Text fontSize="20px">asdasdasddasda</Text>
-        </StyledSliderContainer> */}
+        <CarouselSlider />
       </StyledBodyContainer>
     </StyledBody>
   );

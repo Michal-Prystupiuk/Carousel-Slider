@@ -12,6 +12,7 @@ export const COLORS = {
   darkPurple: '#180d23',
   lightPurple: '#523b55',
 
+  dividerColor: '#4c4757',
   lightBrown: '#65525d',
   brown: '#564454',
   darkBrown: '#554755',

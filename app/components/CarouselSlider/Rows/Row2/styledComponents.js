@@ -17,5 +17,5 @@ export const StyledText = styled(Text)`
 
 export const StyledImage = styled.img`
   width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
 `;

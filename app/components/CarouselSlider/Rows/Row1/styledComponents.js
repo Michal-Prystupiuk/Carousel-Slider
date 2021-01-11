@@ -13,5 +13,6 @@ export const StyledIconRow = styled(Flex)`
 `;
 
 export const StyledTitleRow = styled(Row)`
+  text-align: left;
   grid-template-columns: 1fr 8fr 1fr;
 `;

@@ -2,8 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Flex } from 'rebass';
 
-// import { Header, MainBody, Footer } from './components';
-import CarouselSlider from './CarouselSlider';
+import { Header, MainBody, Footer } from './components';
 
 const Homepage = () => (
   <>
@@ -16,10 +15,9 @@ const Homepage = () => (
     </Helmet>
 
     <Flex flexDirection="column">
-      {/* <Header />
+      <Header />
       <MainBody />
-      <Footer /> */}
-      <CarouselSlider />
+      <Footer />
     </Flex>
   </>
 );
