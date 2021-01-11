@@ -14,6 +14,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
+import { ThemeProvider } from 'styled-components';
+import theme from '@rebass/preset';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
@@ -51,7 +53,9 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
