@@ -2,24 +2,34 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Flex } from 'rebass';
 
-import { Header, MainBody, Footer } from './components';
+import { useInjectReducer } from 'utils/injectReducer';
+import reducer from 'containers/CarouselSlider/reducer';
 
-const Homepage = () => (
-  <>
-    <Helmet>
-      <title>Audioteka Page</title>
-      <meta
-        name="description"
-        content="Audioteka Player Carousel page based on React.js Boilerplate application"
-      />
-    </Helmet>
+import { Header, MainBody, Footer, CarouselSlider } from './components';
 
-    <Flex flexDirection="column">
-      <Header />
-      <MainBody />
-      <Footer />
-    </Flex>
-  </>
-);
+const key = 'carouselSlider';
+
+const Homepage = () => {
+  useInjectReducer({ key, reducer });
+
+  return (
+    <>
+      <Helmet>
+        <title>Audioteka Page</title>
+        <meta
+          name="description"
+          content="Audioteka Player Carousel page based on React.js Boilerplate application"
+        />
+      </Helmet>
+
+      <Flex flexDirection="column">
+        {/* <Header />
+        <MainBody />
+        <Footer /> */}
+        <CarouselSlider />
+      </Flex>
+    </>
+  );
+};
 
 export default Homepage;

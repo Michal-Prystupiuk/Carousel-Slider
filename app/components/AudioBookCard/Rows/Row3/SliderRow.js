@@ -5,16 +5,16 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'icons';
 
 import { StyledSliderRow } from './styledComponents';
 
-const SliderRow = () => {
-  console.log('row4');
+const SliderRow = ({ title, onNext, onBack, width }) => {
+  const fontSize = `${width.replace(/px/, '') / 440}rem`;
 
   return (
     <StyledSliderRow>
-      <ChevronLeftIcon width="10px" />
+      <ChevronLeftIcon width="10px" onClick={onBack} />
 
-      <Text fontSize="0.75rem">Title</Text>
+      <Text fontSize={fontSize}>{title}</Text>
 
-      <ChevronRightIcon width="10px" />
+      <ChevronRightIcon width="10px" onClick={onNext} />
     </StyledSliderRow>
   );
 };

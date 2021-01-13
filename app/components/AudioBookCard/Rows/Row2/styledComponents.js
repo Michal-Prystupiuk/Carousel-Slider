@@ -9,8 +9,7 @@ export const StyledSelectorRow = styled(Flex)`
 `;
 
 export const StyledText = styled(Text)`
-  padding: 10px 0px;
-  font-size: 0.65rem;
+  padding: 12% 0;
   text-align: center;
   color: ${COLORS.darkGrey};
 `;

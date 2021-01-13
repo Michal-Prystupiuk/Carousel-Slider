@@ -1,1 +1,1 @@
-export { default as CarouselSlider } from './CarouselSlider';
+export { default as AudioBookCard } from './AudioBookCard';

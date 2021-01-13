@@ -1,32 +1,33 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import zwierciadloPiekiel from 'images/zwierciadlo_piekiel.jpg';
-
 import { StyledSelectorRow, StyledText, StyledImage } from './styledComponents';
 import { Row } from '../../styledComponents';
 
-const SelectorRow = () => {
-  console.log('row2');
+const SelectorRow = ({ alt, img, width }) => {
+  const fontSize = `${width.replace(/px/, '') / 508}rem`;
 
   return (
     <StyledSelectorRow>
       <Row template="1fr 1fr 1fr" gap="0px">
-        <StyledText>
+        <StyledText fontSize={fontSize}>
           <FormattedMessage id="carouselSlider.description" />
         </StyledText>
 
-        <StyledText style={{ borderTop: '2px solid white' }}>
+        <StyledText
+          style={{ borderTop: '2px solid white' }}
+          fontSize={fontSize}
+        >
           <FormattedMessage id="carouselSlider.musicListener" />
         </StyledText>
 
-        <StyledText>
+        <StyledText fontSize={fontSize}>
           <FormattedMessage id="carouselSlider.chapters" />
         </StyledText>
       </Row>
 
       <Row template="1fr">
-        <StyledImage src={zwierciadloPiekiel} alt="zwierciadloPiekiel" />
+        <StyledImage src={img} alt={alt} />
       </Row>
     </StyledSelectorRow>
   );

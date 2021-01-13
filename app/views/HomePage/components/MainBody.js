@@ -3,7 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { Text, Flex, Button } from 'rebass/styled-components';
 
 import { StyledBody, StyledBodyContainer } from './styledComponents';
-import CarouselSlider from '../../../components/CarouselSlider';
+// import CarouselSlider from '../../../components/CarouselSlider';
+import StyledMessage from './StyledMessage';
 
 const MainBody = () => {
   console.log('hello');
@@ -26,9 +27,10 @@ const MainBody = () => {
               id="homePage.mainBody.section.1"
               values={{
                 title: (
-                  <b>
-                    <FormattedMessage id="homePage.mainBody.section.1.title" />
-                  </b>
+                  <StyledMessage
+                    fontWeight="700"
+                    id="homePage.mainBody.section.1.title"
+                  />
                 ),
               }}
             />
@@ -43,26 +45,29 @@ const MainBody = () => {
               id="homePage.mainBody.section.2"
               values={{
                 subtitle1: (
-                  <b>
-                    <FormattedMessage id="homePage.mainBody.section.2.subtitle1" />
-                  </b>
+                  <StyledMessage
+                    fontWeight="700"
+                    id="homePage.mainBody.section.2.subtitle1"
+                  />
                 ),
                 subtitle2: (
-                  <b>
-                    <FormattedMessage id="homePage.mainBody.section.2.subtitle2" />
-                  </b>
+                  <StyledMessage
+                    fontWeight="700"
+                    id="homePage.mainBody.section.2.subtitle2"
+                  />
                 ),
                 subtitle3: (
-                  <b>
-                    <FormattedMessage id="homePage.mainBody.section.2.subtitle3" />
-                  </b>
+                  <StyledMessage
+                    fontWeight="700"
+                    id="homePage.mainBody.section.2.subtitle3" 
+                  />
                 ),
               }}
             />
           </Text>
         </Flex>
 
-        <CarouselSlider />
+        {/* <CarouselSlider /> */}
       </StyledBodyContainer>
     </StyledBody>
   );
