@@ -9,7 +9,7 @@ export const StyledHeaderRow = styled(Flex)`
 
 export const StyledIconRow = styled(Flex)`
   justify-content: flex-end;
-  padding: 0px 3px 5px;
+  padding: 0 1.25% 3%;
 `;
 
 export const StyledTitleRow = styled(Row)`

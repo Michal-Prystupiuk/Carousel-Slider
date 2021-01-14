@@ -5,7 +5,7 @@ export const StyledPlayerRow = styled(Flex)`
   justify-content: space-evenly;
   flex-direction: row;
   align-items: center;
-  height: 100%;
+  margin-top: 5%;
 `;
 
 export const StyledArrow = styled(Flex)`
