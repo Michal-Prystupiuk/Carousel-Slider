@@ -29,7 +29,7 @@ export const COLORS = {
 export const LIST_OF_AUDIOBOOKS = [
   {
     id: 0,
-    title: 'Upadek gigantów',
+    title: 'Upadek Gigantów',
     img:
       'https://dl.dropboxusercontent.com/sh/y9gaa46qe0kzoq3/AAAXZfOchTJEzOuWGHGuEck6a/img/cover_4%403x.jpg',
     audio:

@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { Text, Flex, Button } from 'rebass/styled-components';
 
 import { StyledBody, StyledBodyContainer } from './styledComponents';
-// import CarouselSlider from '../../../components/CarouselSlider';
+import CarouselSlider from './CarouselSlider';
 import StyledMessage from './StyledMessage';
 
 const MainBody = () => {
@@ -59,7 +59,7 @@ const MainBody = () => {
                 subtitle3: (
                   <StyledMessage
                     fontWeight="700"
-                    id="homePage.mainBody.section.2.subtitle3" 
+                    id="homePage.mainBody.section.2.subtitle3"
                   />
                 ),
               }}
@@ -67,7 +67,7 @@ const MainBody = () => {
           </Text>
         </Flex>
 
-        {/* <CarouselSlider /> */}
+        <CarouselSlider />
       </StyledBodyContainer>
     </StyledBody>
   );

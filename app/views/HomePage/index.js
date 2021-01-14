@@ -1,11 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Flex } from 'rebass';
+import { Flex } from 'rebass/styled-components';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from 'containers/CarouselSlider/reducer';
 
-import { Header, MainBody, Footer, CarouselSlider } from './components';
+import { Header, MainBody, Footer } from './components';
 
 const key = 'carouselSlider';
 
@@ -22,11 +22,10 @@ const Homepage = () => {
         />
       </Helmet>
 
-      <Flex flexDirection="column">
-        {/* <Header />
+      <Flex flexDirection="column" position="relative">
+        <Header />
         <MainBody />
-        <Footer /> */}
-        <CarouselSlider />
+        <Footer />
       </Flex>
     </>
   );

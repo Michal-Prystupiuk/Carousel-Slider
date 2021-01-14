@@ -1,39 +1,39 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Flex } from 'rebass/styled-components';
+
 import { AudioBookCard } from 'components';
 
+import { CurrentSetOfAudioBookSelector } from 'containers/CarouselSlider/selectors';
+
 const CarouselSlider = () => {
-  console.log('carousel');
+  const set = useSelector(CurrentSetOfAudioBookSelector);
 
-  return (
-    <Flex flexDirection="row" position="relative" width="528px">
+  return set.map((obj, index) => {
+    const arrayOfLeftProperty = ['0px', '100px', '280px'];
+    const isMiddleAudioBookCard = index % 3 === 1;
+
+    return (
       <Flex
-        flexDirection="row"
-        mt="80px"
-        width="100%"
-        justifyContent="space-between"
+        flexDirection="column"
+        key={obj.id}
+        style={{ position: 'relative' }}
       >
-        <Flex flexDirection="column">
-          <AudioBookCard width="248px" height="477px" />
-        </Flex>
-
-        <Flex flexDirection="column">
-          <AudioBookCard width="248px" height="477px" />
-        </Flex>
-      </Flex>
-
-      <Flex flexDirection="column">
         <AudioBookCard
-          width="330px"
-          height="635px"
+          width={isMiddleAudioBookCard ? '330px' : '248px'}
+          height={isMiddleAudioBookCard ? '637px' : '477px'}
           position="absolute"
-          top="0"
-          left="100px"
-          zIndex={1}
+          left={arrayOfLeftProperty[index]}
+          top={isMiddleAudioBookCard ? '0px' : '80px'}
+          zIndex={isMiddleAudioBookCard ? 10 : 0}
+          isDisabled={!isMiddleAudioBookCard}
+          onClickNext={index % 3 === 2}
+          onClickBack={index % 3 === 0}
+          value={obj}
         />
       </Flex>
-    </Flex>
-  );
+    );
+  });
 };
 
 export default CarouselSlider;

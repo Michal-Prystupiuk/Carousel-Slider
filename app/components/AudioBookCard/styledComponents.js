@@ -8,12 +8,11 @@ import emptyForm from 'images/empty_form.png';
 export const StyledBackground = styled(Flex)`
   ${space}
   ${position}
-  /* width: 330px; //330px
-  height: 636px; //636px */
   background-image: url(${emptyForm});
   background-size: contain;
   background-repeat: no-repeat;
   user-select: none;
+  transition: all .2s ease-in-out;
 `;
 
 export const StyledContainer = styled(Flex)`

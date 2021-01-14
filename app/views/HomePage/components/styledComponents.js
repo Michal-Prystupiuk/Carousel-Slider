@@ -41,3 +41,7 @@ export const StyledSliderContainer = styled(Flex)`
   background-repeat: no-repeat;
   background-color: red;
 `;
+
+export const StyledF = styled(Flex)`
+  flex-direction: column;
+`;
