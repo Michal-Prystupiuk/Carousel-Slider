@@ -21,6 +21,7 @@ const MainBody = () => {
           alignItems="center"
           justifyContent="center"
           maxWidth="50%"
+          pb="30px"
         >
           <Text fontSize="1rem">
             <FormattedMessage
@@ -67,7 +68,14 @@ const MainBody = () => {
           </Text>
         </Flex>
 
-        <CarouselSlider />
+        <Flex
+          flexDirection="row"
+          width="550px"
+          height="580px"
+          style={{ position: 'relative' }}
+        >
+          <CarouselSlider />
+        </Flex>
       </StyledBodyContainer>
     </StyledBody>
   );
