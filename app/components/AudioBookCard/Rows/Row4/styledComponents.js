@@ -9,6 +9,7 @@ export const StyledPlayerRow = styled(Flex)`
 `;
 
 export const StyledArrow = styled(Flex)`
+  cursor: pointer;
   flex-direction: column;
   align-items: center;
 `;

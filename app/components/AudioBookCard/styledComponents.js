@@ -18,8 +18,8 @@ export const StyledBackground = styled(Flex)`
 export const StyledContainer = styled(Flex)`
   width: 100%;
   flex-direction: column;
-  margin-left: 9.5%;
-  margin-right: 9.5%;
+  margin-top: 3%;
+  margin-bottom: 18%;
   color: ${COLORS.white};
 `;
 
@@ -30,7 +30,7 @@ export const StyledHeader = styled(Flex)`
     ${COLORS.brown} 10%
   );
   background-color: ${COLORS.darkBrown};
-  margin-top: 15%;
+  margin-top: 12%;
   border-radius: 20px 20px 0px 0px;
   padding: 5px 10px 10px;
 
@@ -60,7 +60,7 @@ export const StyledFooter = styled(Flex)`
   border-radius: 0px 0px 20px 20px;
   border-top: 2px solid ${COLORS.dividerColor};
   padding: 5px 10px 10px;
-  margin-bottom: 35%;
+  margin-bottom: 14%;
 `;
 
 export const Row = styled.div`

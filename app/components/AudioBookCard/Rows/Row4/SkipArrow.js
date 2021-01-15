@@ -3,8 +3,8 @@ import { Text } from 'rebass/styled-components';
 
 import { StyledArrow } from './styledComponents';
 
-const SkipArrow = ({ Icon, text, width }) => (
-  <StyledArrow>
+const SkipArrow = ({ Icon, text, width, onClick }) => (
+  <StyledArrow onClick={onClick}>
     {Icon && (
       <Icon width={`${width.replace(/px/, '') / 13.2}px`} height="100%" />
     )}
