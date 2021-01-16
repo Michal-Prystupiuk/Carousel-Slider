@@ -17,6 +17,12 @@ export const AudioBookListSelector = createSelector(
   state => state.data,
 );
 
+export const CurrentAudioBookSelector = createSelector(
+  CurrentAudioBookIdSelector,
+  AudioBookListSelector,
+  (currentId, array) => array[currentId],
+);
+
 export const CurrentSetOfAudioBookSelector = createSelector(
   CurrentAudioBookIdSelector,
   AudioBookListSelector,

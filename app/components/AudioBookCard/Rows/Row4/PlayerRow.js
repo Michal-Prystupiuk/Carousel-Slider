@@ -4,16 +4,12 @@ import { UndoIcon, PlayCircleIcon, PauseCircleIcon, RedoIcon } from 'icons';
 import { StyledPlayerRow } from './styledComponents';
 import SkipArrow from './SkipArrow';
 
-const PlayerRow = ({ width, audioTune }) => {
+const PlayerRow = ({ width, audioTune, totalDuration }) => {
   const [timeElapsed, setTimeElapsed] = useState(0); // in sec
   const [isPaused, setIsPaused] = useState(true);
-  const [timeDuration, setTimeDuration] = useState(0); // in sec
 
   useEffect(() => {
     audioTune.load();
-    audioTune.addEventListener('loadedmetadata', e => {
-      setTimeDuration(e.target.duration);
-    });
   }, [audioTune]);
 
   useEffect(() => {
@@ -22,16 +18,16 @@ const PlayerRow = ({ width, audioTune }) => {
       timer = setInterval(() => setTimeElapsed(timeElapsed + 1), 1000);
     }
 
-    if (timeElapsed >= timeDuration) {
+    if (timeElapsed >= totalDuration) {
       pauseSound();
       setTimeElapsed(0);
       audioTune.currentTime = 0;
     }
 
     return () => clearInterval(timer);
-  }, [timeElapsed, isPaused, setTimeElapsed, timeDuration]);
+  }, [timeElapsed, isPaused, setTimeElapsed, totalDuration]);
 
-  console.log('timeElapsed', timeElapsed, '/', timeDuration);
+  console.log('timeElapsed', timeElapsed, '/', totalDuration);
 
   const playSound = () => {
     audioTune.play();
@@ -54,11 +50,11 @@ const PlayerRow = ({ width, audioTune }) => {
   };
 
   const forwardSound = () => {
-    const isTimeElapsedShortEnough = audioTune.currentTime + 30 < timeDuration;
+    const isTimeElapsedShortEnough = audioTune.currentTime + 30 < totalDuration;
 
     audioTune.currentTime = isTimeElapsedShortEnough
       ? audioTune.currentTime + 30
-      : timeDuration;
+      : totalDuration;
 
     setTimeElapsed(audioTune.currentTime);
   };

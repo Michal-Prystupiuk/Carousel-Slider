@@ -5,7 +5,9 @@ import { Flex } from 'rebass/styled-components';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from 'containers/CarouselSlider/reducer';
 
-import { Header, MainBody, Footer } from './components';
+import Header from './Parts/Part1';
+import MainBody from './Parts/Part2';
+import Footer from './Parts/Part3';
 
 const key = 'carouselSlider';
 

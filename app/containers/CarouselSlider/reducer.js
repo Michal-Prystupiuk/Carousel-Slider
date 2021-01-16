@@ -8,8 +8,8 @@
  */
 
 import produce from 'immer';
-import { LIST_OF_AUDIOBOOKS } from 'consts';
-import { GET_AUDIOBOOKS, UPDATE_CURRENT_ID } from './consts';
+import { LIST_OF_AUDIOBOOKS, AUDIO_DATA } from 'consts';
+import { GET_AUDIOBOOKS, UPDATE_CURRENT_ID, UPDATE_AUDIO_DATA } from './consts';
 
 // The initial state of the App
 export const initialState = {
@@ -26,6 +26,12 @@ const carouselReducer = (state = initialState, action) =>
         break;
       case UPDATE_CURRENT_ID:
         draft.currentAudiobookId = action.currentAudiobookId;
+        break;
+      case UPDATE_AUDIO_DATA:
+        draft.data[action.audioData.id] = {
+          ...draft.data[action.audioData.id],
+          ...action.audioData,
+        };
         break;
     }
   });

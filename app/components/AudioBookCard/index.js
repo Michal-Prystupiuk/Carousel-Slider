@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Flex } from 'rebass/styled-components';
 
 import { CurrentAudioBookIdSelector } from 'containers/CarouselSlider/selectors';
-import { updateCurrentIdAction } from 'containers/CarouselSlider/actions';
+import {
+  updateCurrentIdAction,
+  updateAudioParameters,
+} from 'containers/CarouselSlider/actions';
 
 import {
   StyledBackground,
@@ -26,17 +29,16 @@ const AudioBookCard = ({
   value,
   onClickNext = false,
   onClickBack = false,
+  audioTune,
   ...props
 }) => {
-  const { title, img, audio } = value;
-  const audioTune = new Audio(audio);
+  const { title, img, totalDuration } = value;
 
   const id = useSelector(CurrentAudioBookIdSelector);
 
   const dispatch = useDispatch();
 
   const onNext = () => dispatch(updateCurrentIdAction(id + 1 > 4 ? 0 : id + 1));
-
   const onBack = () => dispatch(updateCurrentIdAction(id - 1 < 0 ? 4 : id - 1));
 
   const onClick = () => {
@@ -69,7 +71,11 @@ const AudioBookCard = ({
             onBack={!isDisabled ? onBack : undefined}
             width={width}
           />
-          <PlayerRow width={width} audioTune={audioTune} />
+          <PlayerRow
+            width={width}
+            audioTune={audioTune}
+            totalDuration={totalDuration}
+          />
         </StyledBody>
 
         <StyledFooter>
