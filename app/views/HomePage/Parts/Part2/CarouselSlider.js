@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { AudioBookCard } from 'components';
@@ -9,7 +9,8 @@ import { CurrentSetOfAudioBookSelector } from 'containers/CarouselSlider/selecto
 const CarouselSlider = () => {
   const set = useSelector(CurrentSetOfAudioBookSelector);
 
-  const audioTune = new Audio(set[1].audio);
+  const audio = new Audio(set[1].audio);
+  // const [audioTune] = useState(new Audio(set[1].audio));
 
   const dispatch = useDispatch();
 
@@ -28,10 +29,10 @@ const CarouselSlider = () => {
   );
 
   useEffect(() => {
-    audioTune.addEventListener('loadedmetadata', handleID);
+    audio.addEventListener('loadedmetadata', handleID);
 
     return () => {
-      audioTune.removeEventListener('loadedmetadata', handleID);
+      audio.removeEventListener('loadedmetadata', handleID);
     };
   }, [handleID]);
 
@@ -52,7 +53,7 @@ const CarouselSlider = () => {
         onClickNext={index % 3 === 2}
         onClickBack={index % 3 === 0}
         value={obj}
-        audioTune={audioTune}
+        audio={isMiddleAudioBookCard ? audio : null}
       />
     );
   });

@@ -35,6 +35,7 @@ export const LIST_OF_AUDIOBOOKS = [
       'https://dl.dropboxusercontent.com/sh/y9gaa46qe0kzoq3/AACBCNN5OUKRaQHxOG4vH07ha/mp3/01_upadek_gigantow-fragment.mp3',
     totalDuration: 0,
     currentTime: 0,
+    isPaused: true,
   },
   {
     id: 1,
@@ -46,6 +47,7 @@ export const LIST_OF_AUDIOBOOKS = [
 
     totalDuration: 0,
     currentTime: 0,
+    isPaused: true,
   },
   {
     id: 2,
@@ -56,6 +58,7 @@ export const LIST_OF_AUDIOBOOKS = [
       'https://dl.dropbox.com/sh/y9gaa46qe0kzoq3/AAA88fZNZmIsX0m1Tw9O6oxMa/mp3/Sierzant-Cuff-fragment.mp3',
     totalDuration: 0,
     currentTime: 0,
+    isPaused: true,
   },
   {
     id: 3,
@@ -66,6 +69,7 @@ export const LIST_OF_AUDIOBOOKS = [
       'https://dl.dropbox.com/sh/y9gaa46qe0kzoq3/AACAY-lvpMTyEmwRQweK6rrsa/mp3/Solaris-fragment.mp3',
     totalDuration: 0,
     currentTime: 0,
+    isPaused: true,
   },
   {
     id: 4,
@@ -77,5 +81,6 @@ export const LIST_OF_AUDIOBOOKS = [
       'https://dl.dropbox.com/sh/y9gaa46qe0kzoq3/AADJl40luw7DLYc31GG-rygha/mp3/Zwierciadlo_piekiel-fragment.mp3',
     totalDuration: 0,
     currentTime: 0,
+    isPaused: true,
   },
 ];

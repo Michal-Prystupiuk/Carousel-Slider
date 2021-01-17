@@ -1,83 +1,89 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { CurrentAudioBookSelector } from 'containers/CarouselSlider/selectors';
+import { updateAudioParameters } from 'containers/CarouselSlider/actions';
 import { UndoIcon, PlayCircleIcon, PauseCircleIcon, RedoIcon } from 'icons';
 
 import { StyledPlayerRow } from './styledComponents';
 import SkipArrow from './SkipArrow';
 
-const PlayerRow = ({ width, audioTune, totalDuration }) => {
-  const [timeElapsed, setTimeElapsed] = useState(0); // in sec
-  const [isPaused, setIsPaused] = useState(true);
+const PlayerRow = ({ width, audio, totalDuration, id, isDisabled }) => {
+  const audioRef = useRef(audio);
 
-  useEffect(() => {
-    audioTune.load();
-  }, [audioTune]);
+  const { isPaused, currentTime } = useSelector(CurrentAudioBookSelector);
 
-  useEffect(() => {
-    let timer;
-    if (!isPaused) {
-      timer = setInterval(() => setTimeElapsed(timeElapsed + 1), 1000);
-    }
+  const dispatch = useDispatch();
 
-    if (timeElapsed >= totalDuration) {
-      pauseSound();
-      setTimeElapsed(0);
-      audioTune.currentTime = 0;
-    }
-
-    return () => clearInterval(timer);
-  }, [timeElapsed, isPaused, setTimeElapsed, totalDuration]);
-
-  console.log('timeElapsed', timeElapsed, '/', totalDuration);
-
-  const playSound = () => {
-    audioTune.play();
-    setIsPaused(false);
+  const updateAudio = obj => {
+    dispatch(updateAudioParameters({ id, ...obj }));
   };
 
-  const pauseSound = () => {
-    audioTune.pause();
-    setIsPaused(true);
-  };
+  useEffect(() => {
+    if (!isDisabled) {
+      if (isPaused) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.currentTime = currentTime;
+        audioRef.current.play();
+      }
+    }
+  }, [isPaused, isDisabled, audio]);
+
+  const playSound = () =>
+    updateAudio({
+      isPaused: false,
+    });
+
+  const pauseSound = () =>
+    updateAudio({
+      isPaused: true,
+      currentTime: audioRef.current.currentTime,
+    });
 
   const backwardSound = () => {
-    const isTimeElapsedLongEnough = audioTune.currentTime > 15;
+    const isTimeElapsedLongEnough = audioRef.current.currentTime > 15;
 
-    audioTune.currentTime = isTimeElapsedLongEnough
-      ? audioTune.currentTime - 15
+    audioRef.current.currentTime = isTimeElapsedLongEnough
+      ? audioRef.current.currentTime - 15
       : 0;
 
-    setTimeElapsed(audioTune.currentTime);
+    updateAudio({
+      currentTime: audioRef.current.currentTime,
+    });
   };
 
   const forwardSound = () => {
-    const isTimeElapsedShortEnough = audioTune.currentTime + 30 < totalDuration;
+    const isTimeElapsedShortEnough = audioRef.current.currentTime + 30 < totalDuration;
 
-    audioTune.currentTime = isTimeElapsedShortEnough
-      ? audioTune.currentTime + 30
+    audioRef.current.currentTime = isTimeElapsedShortEnough
+      ? audioRef.current.currentTime + 30
       : totalDuration;
 
-    setTimeElapsed(audioTune.currentTime);
+    updateAudio({
+      currentTime: audioRef.current.currentTime,
+    });
   };
 
   return (
     <StyledPlayerRow>
       <SkipArrow
         Icon={UndoIcon}
-        onClick={backwardSound}
+        onClick={isDisabled ? undefined : backwardSound}
         text="15"
         width={width}
       />
 
       {isPaused ? (
         <PlayCircleIcon
-          onClick={playSound}
+          onClick={isDisabled ? undefined : playSound}
           width="25%"
           height="100%"
           cursor="pointer"
         />
       ) : (
         <PauseCircleIcon
-          onClick={pauseSound}
+          onClick={isDisabled ? undefined : pauseSound}
           width="25%"
           height="100%"
           cursor="pointer"
@@ -86,7 +92,7 @@ const PlayerRow = ({ width, audioTune, totalDuration }) => {
 
       <SkipArrow
         Icon={RedoIcon}
-        onClick={forwardSound}
+        onClick={isDisabled ? undefined : forwardSound}
         text="30"
         width={width}
       />

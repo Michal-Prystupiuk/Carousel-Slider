@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Flex } from 'rebass/styled-components';
 
-import { CurrentAudioBookIdSelector } from 'containers/CarouselSlider/selectors';
+import {
+  CurrentAudioBookIdSelector,
+  CurrentAudioBookSelector,
+} from 'containers/CarouselSlider/selectors';
 import {
   updateCurrentIdAction,
   updateAudioParameters,
@@ -20,6 +23,7 @@ import HeaderRow from './Rows/Row1';
 import SelectorRow from './Rows/Row2';
 import SliderRow from './Rows/Row3';
 import PlayerRow from './Rows/Row4';
+import DumbPlayerRow from './Rows/Row4/DumbPlayerRow';
 import FooterRow from './Rows/Row5';
 
 const AudioBookCard = ({
@@ -29,14 +33,32 @@ const AudioBookCard = ({
   value,
   onClickNext = false,
   onClickBack = false,
-  audioTune,
+  audio,
+  index,
   ...props
 }) => {
   const { title, img, totalDuration } = value;
 
+  // const audio = useRef(audioTune);
+
   const id = useSelector(CurrentAudioBookIdSelector);
 
+  const { currentTime } = useSelector(CurrentAudioBookSelector);
+
   const dispatch = useDispatch();
+
+  const updateAudio = obj => {
+    dispatch(updateAudioParameters({ id, ...obj }));
+  };
+
+  useEffect(() => {
+    if (audio !== null) {
+      updateAudio({
+        isPaused: true,
+        currentTime,
+      });
+    }
+  }, [onNext, onBack]);
 
   const onNext = () => dispatch(updateCurrentIdAction(id + 1 > 4 ? 0 : id + 1));
   const onBack = () => dispatch(updateCurrentIdAction(id - 1 < 0 ? 4 : id - 1));
@@ -71,15 +93,26 @@ const AudioBookCard = ({
             onBack={!isDisabled ? onBack : undefined}
             width={width}
           />
-          <PlayerRow
-            width={width}
-            audioTune={audioTune}
-            totalDuration={totalDuration}
-          />
+          {audio === null ? (
+            <DumbPlayerRow width={width} />
+          ) : (
+            <PlayerRow
+              width={width}
+              audio={audio}
+              totalDuration={totalDuration}
+              id={id}
+              isDisabled={isDisabled}
+            />
+          )}
         </StyledBody>
 
         <StyledFooter>
-          <FooterRow width={width} currentTime={audioTune.currentTime} />
+          <FooterRow
+            width={width}
+            totalDuration={totalDuration}
+            id={id}
+            isDisabled={isDisabled}
+          />
         </StyledFooter>
       </StyledContainer>
 
