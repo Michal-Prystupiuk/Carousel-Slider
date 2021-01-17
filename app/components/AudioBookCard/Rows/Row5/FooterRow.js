@@ -52,12 +52,13 @@ const FooterRow = ({ id, width }) => {
   }, [timeElapsed, isPaused, currentTime]);
 
   const iconWidth = `${width / 22}px`;
+  const fontSize = `${width / 440}rem`;
 
   return (
     <StyledFooterRow>
       <SnoozeIcon width={iconWidth} height="100%" />
 
-      <Text>
+      <Text fontSize={fontSize}>
         {formatToTimeDisplayed(timeElapsed)}
         {' / '}
         {formatToTimeDisplayed(totalDuration)}
