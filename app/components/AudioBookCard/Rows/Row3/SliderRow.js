@@ -5,6 +5,7 @@ import { Text } from 'rebass/styled-components';
 import { ChevronLeftIcon, ChevronRightIcon } from 'icons';
 
 import { StyledSliderRow } from './styledComponents';
+import SliderIcon from './SliderIcon';
 
 /** @type {React.FunctionComponent <{title: string, onNext?: function, onBack?: function, width: string }/>} */
 const SliderRow = ({ title, onNext, onBack, width }) => {
@@ -12,11 +13,11 @@ const SliderRow = ({ title, onNext, onBack, width }) => {
 
   return (
     <StyledSliderRow>
-      <ChevronLeftIcon width="10px" onClick={onBack} cursor="pointer" />
+      <SliderIcon Icon={ChevronLeftIcon} onClick={onBack} />
 
       <Text fontSize={fontSize}>{title}</Text>
 
-      <ChevronRightIcon width="10px" onClick={onNext} cursor="pointer" />
+      <SliderIcon Icon={ChevronRightIcon} onClick={onNext} />
     </StyledSliderRow>
   );
 };

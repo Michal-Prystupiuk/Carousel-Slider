@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { PropTypes } from 'prop-types';
+import { Flex } from 'rebass/styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { updateAudioParameters } from 'containers/CarouselSlider/actions';
@@ -7,7 +8,7 @@ import { CurrentAudioBookSelector } from 'containers/CarouselSlider/selectors';
 
 import { UndoIcon, PlayCircleIcon, PauseCircleIcon, RedoIcon } from 'icons';
 
-import { StyledPlayerRow } from './styledComponents';
+import { StyledPlayerRow, StyledPlayButton } from './styledComponents';
 import SkipArrow from './SkipArrow';
 
 /** @type {React.FunctionComponent <{id: number,width: string, audio: any}/>} */
@@ -83,21 +84,20 @@ const PlayerRow = ({ id, width, audio }) => {
         width={width}
       />
 
-      {isPaused ? (
-        <PlayCircleIcon
-          onClick={playSound}
-          width="25%"
-          height="100%"
-          cursor="pointer"
-        />
-      ) : (
-        <PauseCircleIcon
-          onClick={pauseSound}
-          width="25%"
-          height="100%"
-          cursor="pointer"
-        />
-      )}
+      <Flex width="25%" height="100%">
+        {isPaused ? (
+          <StyledPlayButton onClick={playSound}>
+            <PlayCircleIcon width="100%" height="100%" cursor="pointer" />
+          </StyledPlayButton>
+        ) : (
+          <PauseCircleIcon
+            width="100%"
+            height="100%"
+            cursor="pointer"
+            onClick={pauseSound}
+          />
+        )}
+      </Flex>
 
       <SkipArrow
         Icon={RedoIcon}
