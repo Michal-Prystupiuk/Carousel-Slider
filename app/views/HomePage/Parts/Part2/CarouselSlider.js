@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { AudioBookCard } from 'components';
@@ -11,7 +11,6 @@ const CarouselSlider = () => {
 
   const audio = new Audio(set[1].audio);
   // const [audioTune] = useState(new Audio(set[1].audio));
-
   const dispatch = useDispatch();
 
   const handleID = useCallback(

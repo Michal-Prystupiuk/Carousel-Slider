@@ -39,10 +39,13 @@ const FooterRow = ({ width, id, isDisabled }) => {
 
     if (timeElapsed >= totalDuration) {
       setTimeElapsed(0);
-      updateAudio({
-        isPaused: true,
-        currentTime: 0,
-      });
+
+      if (currentTime !== 0) {
+        updateAudio({
+          isPaused: true,
+          currentTime: 0,
+        });
+      }
     }
 
     return () => clearInterval(timer);

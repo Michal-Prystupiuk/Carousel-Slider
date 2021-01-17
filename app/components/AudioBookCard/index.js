@@ -1,15 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Flex } from 'rebass/styled-components';
 
-import {
-  CurrentAudioBookIdSelector,
-  CurrentAudioBookSelector,
-} from 'containers/CarouselSlider/selectors';
-import {
-  updateCurrentIdAction,
-  updateAudioParameters,
-} from 'containers/CarouselSlider/actions';
+import { CurrentAudioBookIdSelector } from 'containers/CarouselSlider/selectors';
+import { updateCurrentIdAction } from 'containers/CarouselSlider/actions';
 
 import {
   StyledBackground,
@@ -39,26 +33,9 @@ const AudioBookCard = ({
 }) => {
   const { title, img, totalDuration } = value;
 
-  // const audio = useRef(audioTune);
-
   const id = useSelector(CurrentAudioBookIdSelector);
 
-  const { currentTime } = useSelector(CurrentAudioBookSelector);
-
   const dispatch = useDispatch();
-
-  const updateAudio = obj => {
-    dispatch(updateAudioParameters({ id, ...obj }));
-  };
-
-  useEffect(() => {
-    if (audio !== null) {
-      updateAudio({
-        isPaused: true,
-        currentTime,
-      });
-    }
-  }, [onNext, onBack]);
 
   const onNext = () => dispatch(updateCurrentIdAction(id + 1 > 4 ? 0 : id + 1));
   const onBack = () => dispatch(updateCurrentIdAction(id - 1 < 0 ? 4 : id - 1));
@@ -101,7 +78,6 @@ const AudioBookCard = ({
               audio={audio}
               totalDuration={totalDuration}
               id={id}
-              isDisabled={isDisabled}
             />
           )}
         </StyledBody>
