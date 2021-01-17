@@ -10,7 +10,7 @@ const CarouselSlider = () => {
   const set = useSelector(CurrentSetOfAudioBookSelector);
 
   const audio = new Audio(set[1].audio);
-  // const [audioTune] = useState(new Audio(set[1].audio));
+
   const dispatch = useDispatch();
 
   const handleID = useCallback(
@@ -42,17 +42,15 @@ const CarouselSlider = () => {
     return (
       <AudioBookCard
         key={obj.id}
-        width={isMiddleAudioBookCard ? '330px' : '248px'}
-        height={isMiddleAudioBookCard ? '637px' : '477px'}
+        widthInPx={isMiddleAudioBookCard ? '330px' : '248px'}
+        heightInPx={isMiddleAudioBookCard ? '637px' : '477px'}
         position="absolute"
         left={arrayOfLeftProperty[index]}
         top={isMiddleAudioBookCard ? '0px' : '80px'}
         zIndex={isMiddleAudioBookCard ? 10 : 0}
-        isDisabled={!isMiddleAudioBookCard}
-        onClickNext={index % 3 === 2}
-        onClickBack={index % 3 === 0}
         value={obj}
         audio={isMiddleAudioBookCard ? audio : null}
+        index={index}
       />
     );
   });

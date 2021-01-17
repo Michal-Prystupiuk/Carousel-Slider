@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Flex, Text } from 'rebass/styled-components';
+import { PropTypes } from 'prop-types';
+import { Text } from 'rebass/styled-components';
 
 import { updateAudioParameters } from 'containers/CarouselSlider/actions';
 import { CurrentAudioBookSelector } from 'containers/CarouselSlider/selectors';
 
 import { SnoozeIcon, AVTimerIcon } from 'icons';
 
-const FooterRow = ({ width, id, isDisabled }) => {
+import { formatToTimeDisplayed } from './utils';
+import { StyledFooterRow } from './styledComponents';
+
+/** @type {React.FunctionComponent <{
+ * id: number,
+ * width: string,
+ * isMiddleCard: boolean}/>} */
+const FooterRow = ({ id, width, isMiddleCard }) => {
+  const [timeElapsed, setTimeElapsed] = useState(0);
+
   const { isPaused, currentTime, totalDuration } = useSelector(
     CurrentAudioBookSelector,
   );
-
   const dispatch = useDispatch();
 
-  const updateAudio = obj => {
-    dispatch(updateAudioParameters({ id, ...obj }));
-  };
-
-  const [timeElapsed, setTimeElapsed] = useState(0); // in sec
-
-  // for backward and forward action
   useEffect(() => {
     if (currentTime !== timeElapsed) {
       setTimeElapsed(currentTime);
     }
   }, [currentTime]);
 
-  // for counter
   useEffect(() => {
     let timer;
 
@@ -41,36 +42,42 @@ const FooterRow = ({ width, id, isDisabled }) => {
       setTimeElapsed(0);
 
       if (currentTime !== 0) {
-        updateAudio({
-          isPaused: true,
-          currentTime: 0,
-        });
+        dispatch(
+          updateAudioParameters({
+            id,
+            isPaused: true,
+            currentTime: 0,
+          }),
+        );
       }
     }
 
     return () => clearInterval(timer);
   }, [timeElapsed, isPaused, currentTime]);
 
-  const iconWidth = `${width.replace(/px/, '') / 22}px`;
-
-  const fu = val => {
-    const timeInSec = Math.round(val * 100) / 100;
-    const timeInMin = Math.floor(timeInSec / 60);
-    const timelast = Math.round(timeInSec - timeInMin * 60);
-    return `${timeInMin}:${timelast < 10 ? '0' : ''}${timelast}`;
-  };
+  const iconWidth = `${width / 22}px`;
 
   return (
-    <Flex justifyContent="space-between" mt="1%">
+    <StyledFooterRow>
       <SnoozeIcon width={iconWidth} height="100%" />
-      {!isDisabled && (
+
+      {isMiddleCard && (
         <Text>
-          {fu(timeElapsed)} / {fu(totalDuration)}
+          {formatToTimeDisplayed(timeElapsed)}
+          {' / '}
+          {formatToTimeDisplayed(totalDuration)}
         </Text>
       )}
+
       <AVTimerIcon width={iconWidth} height="100%" />
-    </Flex>
+    </StyledFooterRow>
   );
+};
+
+FooterRow.propTypes = {
+  id: PropTypes.number,
+  width: PropTypes.string,
+  isMiddleCard: PropTypes.bool,
 };
 
 export default FooterRow;

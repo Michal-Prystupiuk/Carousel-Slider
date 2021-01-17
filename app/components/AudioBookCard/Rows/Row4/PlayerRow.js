@@ -1,42 +1,42 @@
 import React, { useEffect, useRef } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { CurrentAudioBookSelector } from 'containers/CarouselSlider/selectors';
 import { updateAudioParameters } from 'containers/CarouselSlider/actions';
+import { CurrentAudioBookSelector } from 'containers/CarouselSlider/selectors';
+
 import { UndoIcon, PlayCircleIcon, PauseCircleIcon, RedoIcon } from 'icons';
 
 import { StyledPlayerRow } from './styledComponents';
 import SkipArrow from './SkipArrow';
 
-const PlayerRow = ({ width, audio, totalDuration, id }) => {
-  const audioRef = useRef(audio);
-
-  const { isPaused, currentTime } = useSelector(
+/** @type {React.FunctionComponent <{id: number,width: string, audio: any}/>} */
+const PlayerRow = ({ id, width, audio }) => {
+  const { current: currentAudio } = useRef(audio);
+  const { isPaused, currentTime, totalDuration } = useSelector(
     CurrentAudioBookSelector,
-    shallowEqual,
   );
-
   const dispatch = useDispatch();
-
-  const updateAudio = obj => {
-    dispatch(updateAudioParameters({ id, ...obj }));
-  };
 
   useEffect(() => {
     if (isPaused) {
-      audioRef.current.pause();
+      currentAudio.pause();
     } else {
-      audioRef.current.currentTime = currentTime;
-      audioRef.current.play();
+      currentAudio.currentTime = currentTime;
+      currentAudio.play();
     }
 
     return () => {
       if (!isPaused) {
-        audioRef.current.pause();
+        currentAudio.pause();
         pauseSound();
       }
     };
-  }, [isPaused, audioRef.current]);
+  }, [isPaused, currentAudio]);
+
+  const updateAudio = obj => {
+    dispatch(updateAudioParameters({ id, ...obj }));
+  };
 
   const playSound = () =>
     updateAudio({
@@ -46,31 +46,31 @@ const PlayerRow = ({ width, audio, totalDuration, id }) => {
   const pauseSound = () =>
     updateAudio({
       isPaused: true,
-      currentTime: audioRef.current.currentTime,
+      currentTime: currentAudio.currentTime,
     });
 
   const backwardSound = () => {
-    const isTimeElapsedLongEnough = audioRef.current.currentTime > 15;
+    const isTimeElapsedLongEnough = currentAudio.currentTime > 15;
 
-    audioRef.current.currentTime = isTimeElapsedLongEnough
-      ? audioRef.current.currentTime - 15
+    currentAudio.currentTime = isTimeElapsedLongEnough
+      ? currentAudio.currentTime - 15
       : 0;
 
     updateAudio({
-      currentTime: audioRef.current.currentTime,
+      currentTime: currentAudio.currentTime,
     });
   };
 
   const forwardSound = () => {
     const isTimeElapsedShortEnough =
-      audioRef.current.currentTime + 30 < totalDuration;
+      currentAudio.currentTime + 30 < totalDuration;
 
-    audioRef.current.currentTime = isTimeElapsedShortEnough
-      ? audioRef.current.currentTime + 30
+    currentAudio.currentTime = isTimeElapsedShortEnough
+      ? currentAudio.currentTime + 30
       : totalDuration;
 
     updateAudio({
-      currentTime: audioRef.current.currentTime,
+      currentTime: currentAudio.currentTime,
     });
   };
 
@@ -107,6 +107,12 @@ const PlayerRow = ({ width, audio, totalDuration, id }) => {
       />
     </StyledPlayerRow>
   );
+};
+
+PlayerRow.propTypes = {
+  id: PropTypes.number,
+  width: PropTypes.string,
+  audio: PropTypes.object,
 };
 
 export default PlayerRow;

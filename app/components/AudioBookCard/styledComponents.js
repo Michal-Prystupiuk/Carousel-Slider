@@ -67,6 +67,13 @@ export const Row = styled.div`
   ${space}
   display: grid;
   align-items: center;
-  ${({ gap = '20px' }) => `grid-column-gap: ${gap};`}
-  ${({ template = '1fr 1fr' }) => `grid-template-columns: ${template};`}
+  ${(
+    /** @type {{ gap ?: string }} */
+    { gap = '20px' },
+  ) => `grid-column-gap: ${gap};`}
+
+  ${(
+    /** @type {{ template ?: string}} */
+    { template = '1fr 1fr' },
+  ) => `grid-template-columns: ${template};`}
 `;

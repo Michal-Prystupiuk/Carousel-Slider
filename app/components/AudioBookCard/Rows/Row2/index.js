@@ -1,1 +1,1 @@
-export { default } from './SelectorRow';
+export { default } from './CategoryRow';

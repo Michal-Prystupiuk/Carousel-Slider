@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import { Flex } from 'rebass/styled-components';
 
 import { CurrentAudioBookIdSelector } from 'containers/CarouselSlider/selectors';
@@ -14,26 +15,36 @@ import {
 } from './styledComponents';
 
 import HeaderRow from './Rows/Row1';
-import SelectorRow from './Rows/Row2';
+import CategoryRow from './Rows/Row2';
 import SliderRow from './Rows/Row3';
-import PlayerRow from './Rows/Row4';
-import DumbPlayerRow from './Rows/Row4/DumbPlayerRow';
+import { PlayerRow, DisabledPlayerRow } from './Rows/Row4';
 import FooterRow from './Rows/Row5';
 
+/** @type {React.FunctionComponent <{
+ * widthInPx: string,
+ * heightInPx: string,
+ * value: { title: string, img: string },
+ * audio: any,
+ * index: number,
+ * position?: string,
+ * left?: string,
+ * zIndex?: number}/>} */
 const AudioBookCard = ({
-  width,
-  height,
-  isDisabled = false,
+  widthInPx,
+  heightInPx,
   value,
-  onClickNext = false,
-  onClickBack = false,
   audio,
   index,
   ...props
 }) => {
-  const { title, img, totalDuration } = value;
+  const { title, img } = value;
+  const width = widthInPx.replace(/px/, '');
 
   const id = useSelector(CurrentAudioBookIdSelector);
+
+  const isLeftCard = index === 0;
+  const isMiddleCard = index === 1;
+  const isRightCard = index === 2;
 
   const dispatch = useDispatch();
 
@@ -41,17 +52,17 @@ const AudioBookCard = ({
   const onBack = () => dispatch(updateCurrentIdAction(id - 1 < 0 ? 4 : id - 1));
 
   const onClick = () => {
-    if (onClickNext) return onNext();
-    if (onClickBack) return onBack();
+    if (isLeftCard) return onBack();
+    if (isRightCard) return onNext();
 
     return null;
   };
 
   return (
-    <StyledBackground width={width} height={height} {...props}>
+    <StyledBackground width={widthInPx} height={heightInPx} {...props}>
       <Flex width="6.5%" flexDirection="column">
         <Flex height="88px" />
-        <Flex height="425px" onClick={!isDisabled ? onBack : undefined} />
+        <Flex height="425px" onClick={isMiddleCard ? onBack : undefined} />
       </Flex>
       <Flex width="5.5%" flexDirection="column">
         <Flex height="425px" mt="10px" onClick={onClick} />
@@ -63,32 +74,22 @@ const AudioBookCard = ({
         </StyledHeader>
 
         <StyledBody>
-          <SelectorRow alt={title} img={img} width={width} />
+          <CategoryRow alt={title} img={img} width={width} />
           <SliderRow
             title={title}
-            onNext={!isDisabled ? onNext : undefined}
-            onBack={!isDisabled ? onBack : undefined}
+            onNext={isMiddleCard ? onNext : undefined}
+            onBack={isMiddleCard ? onBack : undefined}
             width={width}
           />
           {audio === null ? (
-            <DumbPlayerRow width={width} />
+            <DisabledPlayerRow width={width} />
           ) : (
-            <PlayerRow
-              width={width}
-              audio={audio}
-              totalDuration={totalDuration}
-              id={id}
-            />
+            <PlayerRow id={id} width={width} audio={audio} />
           )}
         </StyledBody>
 
         <StyledFooter>
-          <FooterRow
-            width={width}
-            totalDuration={totalDuration}
-            id={id}
-            isDisabled={isDisabled}
-          />
+          <FooterRow id={id} width={width} isMiddleCard={isMiddleCard} />
         </StyledFooter>
       </StyledContainer>
 
@@ -97,10 +98,18 @@ const AudioBookCard = ({
       </Flex>
       <Flex width="6.5%" flexDirection="column">
         <Flex height="88px" />
-        <Flex height="425px" onClick={!isDisabled ? onNext : undefined} />
+        <Flex height="425px" onClick={isMiddleCard ? onNext : undefined} />
       </Flex>
     </StyledBackground>
   );
+};
+
+AudioBookCard.propTypes = {
+  widthInPx: PropTypes.string,
+  heightInPx: PropTypes.string,
+  value: PropTypes.object,
+  audio: PropTypes.object,
+  index: PropTypes.number,
 };
 
 export default AudioBookCard;

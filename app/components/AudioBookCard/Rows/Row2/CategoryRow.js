@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import { StyledSelectorRow, StyledText, StyledImage } from './styledComponents';
+import { StyledCategoryRow, StyledText, StyledImage } from './styledComponents';
 import { Row } from '../../styledComponents';
 
-const SelectorRow = ({ alt, img, width }) => {
-  const fontSize = `${width.replace(/px/, '') / 508}rem`;
+/** @type {React.FunctionComponent <{alt: string, img: string, width: string}/>} */
+const CategoryRow = ({ alt, img, width }) => {
+  const fontSize = `${width / 508}rem`;
 
   return (
-    <StyledSelectorRow>
+    <StyledCategoryRow>
       <Row template="1fr 1fr 1fr" gap="0px">
         <StyledText fontSize={fontSize}>
           <FormattedMessage id="carouselSlider.description" />
@@ -29,8 +31,14 @@ const SelectorRow = ({ alt, img, width }) => {
       <Row template="1fr">
         <StyledImage src={img} alt={alt} />
       </Row>
-    </StyledSelectorRow>
+    </StyledCategoryRow>
   );
 };
 
-export default SelectorRow;
+CategoryRow.propTypes = {
+  alt: PropTypes.string,
+  img: PropTypes.string,
+  width: PropTypes.string,
+};
+
+export default CategoryRow;

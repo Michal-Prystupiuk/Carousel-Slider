@@ -3,7 +3,7 @@ import { Flex, Text } from 'rebass/styled-components';
 
 import { COLORS } from 'consts';
 
-export const StyledSelectorRow = styled(Flex)`
+export const StyledCategoryRow = styled(Flex)`
   justify-content: center;
   flex-direction: column;
 `;
