@@ -30,10 +30,10 @@ export const StyledPlayButton = styled(Flex)`
   height: 100%;
   box-shadow: 0 0 0 0 ${COLORS.darkGreen};
   border-radius: 50%;
-  -webkit-animation: pulse 1.25s 10 cubic-bezier(0.5, 0, 0, 1);
-  -moz-animation: pulse 1.25s 10 cubic-bezier(0.5, 0, 0, 1);
-  -ms-animation: pulse 1.25s 10 cubic-bezier(0.5, 0, 0, 1);
-  animation: pulse 1.25s 10 cubic-bezier(0.5, 0, 0, 1);
+  -webkit-animation: pulse 1.25s 3 cubic-bezier(0.5, 0, 0, 1);
+  -moz-animation: pulse 1.25s 3 cubic-bezier(0.5, 0, 0, 1);
+  -ms-animation: pulse 1.25s 3 cubic-bezier(0.5, 0, 0, 1);
+  animation: pulse 1.25s 3 cubic-bezier(0.5, 0, 0, 1);
 
   &:hover {
     -webkit-animation: none;
