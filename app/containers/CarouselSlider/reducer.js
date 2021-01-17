@@ -18,7 +18,7 @@ export const initialState = {
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const carouselReducer = (state = initialState, action) =>
+const carouselSliderReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case UPDATE_CURRENT_ID:
@@ -33,4 +33,4 @@ const carouselReducer = (state = initialState, action) =>
     }
   });
 
-export default carouselReducer;
+export default carouselSliderReducer;
