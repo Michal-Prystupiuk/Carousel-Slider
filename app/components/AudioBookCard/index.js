@@ -18,7 +18,7 @@ import HeaderRow from './Rows/Row1';
 import CategoryRow from './Rows/Row2';
 import SliderRow from './Rows/Row3';
 import { PlayerRow, DisabledPlayerRow } from './Rows/Row4';
-import FooterRow from './Rows/Row5';
+import { FooterRow, DisabledFooterRow } from './Rows/Row5';
 
 /** @type {React.FunctionComponent <{
  * widthInPx: string,
@@ -89,7 +89,11 @@ const AudioBookCard = ({
         </StyledBody>
 
         <StyledFooter>
-          <FooterRow id={id} width={width} isMiddleCard={isMiddleCard} />
+          {isMiddleCard ? (
+            <FooterRow id={id} width={width} />
+          ) : (
+            <DisabledFooterRow width={width} />
+          )}
         </StyledFooter>
       </StyledContainer>
 

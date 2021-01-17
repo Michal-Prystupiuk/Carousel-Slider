@@ -11,16 +11,13 @@ import { SnoozeIcon, AVTimerIcon } from 'icons';
 import { formatToTimeDisplayed } from './utils';
 import { StyledFooterRow } from './styledComponents';
 
-/** @type {React.FunctionComponent <{
- * id: number,
- * width: string,
- * isMiddleCard: boolean}/>} */
-const FooterRow = ({ id, width, isMiddleCard }) => {
-  const [timeElapsed, setTimeElapsed] = useState(0);
-
+/** @type {React.FunctionComponent <{id: number, width: string}/>} */
+const FooterRow = ({ id, width }) => {
   const { isPaused, currentTime, totalDuration } = useSelector(
     CurrentAudioBookSelector,
   );
+  const [timeElapsed, setTimeElapsed] = useState(0);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,8 +36,6 @@ const FooterRow = ({ id, width, isMiddleCard }) => {
     }
 
     if (timeElapsed >= totalDuration) {
-      setTimeElapsed(0);
-
       if (currentTime !== 0) {
         dispatch(
           updateAudioParameters({
@@ -50,6 +45,7 @@ const FooterRow = ({ id, width, isMiddleCard }) => {
           }),
         );
       }
+      setTimeElapsed(currentTime);
     }
 
     return () => clearInterval(timer);
@@ -61,13 +57,11 @@ const FooterRow = ({ id, width, isMiddleCard }) => {
     <StyledFooterRow>
       <SnoozeIcon width={iconWidth} height="100%" />
 
-      {isMiddleCard && (
-        <Text>
-          {formatToTimeDisplayed(timeElapsed)}
-          {' / '}
-          {formatToTimeDisplayed(totalDuration)}
-        </Text>
-      )}
+      <Text>
+        {formatToTimeDisplayed(timeElapsed)}
+        {' / '}
+        {formatToTimeDisplayed(totalDuration)}
+      </Text>
 
       <AVTimerIcon width={iconWidth} height="100%" />
     </StyledFooterRow>
@@ -77,7 +71,6 @@ const FooterRow = ({ id, width, isMiddleCard }) => {
 FooterRow.propTypes = {
   id: PropTypes.number,
   width: PropTypes.string,
-  isMiddleCard: PropTypes.bool,
 };
 
 export default FooterRow;
