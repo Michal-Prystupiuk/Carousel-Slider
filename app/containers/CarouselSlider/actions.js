@@ -1,27 +1,11 @@
-import {
-  GET_AUDIOBOOKS,
-  UPDATE_CURRENT_ID,
-  UPDATE_AUDIO_DATA,
-  UPDATE_ID_AND_AUDIO,
-} from './consts';
+import { UPDATE_CURRENT_ID, UPDATE_AUDIO_DATA } from './consts';
 
-export const getAudiobooksAction = data => ({
-  type: GET_AUDIOBOOKS,
-  data,
-});
-
-export const updateCurrentIdAction = currentAudiobookId => ({
+export const updateCurrentIdAction = currentAudioBookId => ({
   type: UPDATE_CURRENT_ID,
-  currentAudiobookId,
+  currentAudioBookId,
 });
 
 export const updateAudioParameters = audioData => ({
   type: UPDATE_AUDIO_DATA,
-  audioData,
-});
-
-export const updateAudioAndId = (currentAudiobookId, audioData) => ({
-  type: UPDATE_ID_AND_AUDIO,
-  currentAudiobookId,
   audioData,
 });

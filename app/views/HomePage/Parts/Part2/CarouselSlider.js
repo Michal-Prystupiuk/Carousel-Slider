@@ -37,20 +37,20 @@ const CarouselSlider = () => {
 
   return set.map((obj, index) => {
     const arrayOfLeftProperty = ['0px', '100px', '280px'];
-    const isMiddleAudioBookCard = index % 3 === 1;
+    const isMiddleAudioBookCard = index === 1;
 
     return (
       <AudioBookCard
         key={obj.id}
-        widthInPx={isMiddleAudioBookCard ? '330px' : '248px'}
-        heightInPx={isMiddleAudioBookCard ? '637px' : '477px'}
+        index={index}
+        value={obj}
         position="absolute"
         left={arrayOfLeftProperty[index]}
-        top={isMiddleAudioBookCard ? '0px' : '80px'}
         zIndex={isMiddleAudioBookCard ? 10 : 0}
-        value={obj}
+        top={isMiddleAudioBookCard ? '0px' : '80px'}
         audio={isMiddleAudioBookCard ? audio : null}
-        index={index}
+        widthInPx={isMiddleAudioBookCard ? '330px' : '248px'}
+        heightInPx={isMiddleAudioBookCard ? '637px' : '477px'}
       />
     );
   });

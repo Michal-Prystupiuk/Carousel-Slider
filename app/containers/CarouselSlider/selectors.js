@@ -7,14 +7,14 @@ import { initialState } from './reducer';
 
 const selectCarouselSlider = state => state.carouselSlider || initialState;
 
-export const CurrentAudioBookIdSelector = createSelector(
-  selectCarouselSlider,
-  state => state.currentAudiobookId,
-);
-
-export const AudioBookListSelector = createSelector(
+const AudioBookListSelector = createSelector(
   selectCarouselSlider,
   state => state.data,
+);
+
+export const CurrentAudioBookIdSelector = createSelector(
+  selectCarouselSlider,
+  state => state.currentAudioBookId,
 );
 
 export const CurrentAudioBookSelector = createSelector(

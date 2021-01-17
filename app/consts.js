@@ -1,5 +1,3 @@
-import zwierciadloPiekiel from 'images/zwierciadlo_piekiel.jpg';
-
 export const PATHS = {
   HOMEPAGE: '/homepage',
 };
@@ -25,7 +23,7 @@ export const COLORS = {
   white: '#ffffff',
 };
 
-export const LIST_OF_AUDIOBOOKS = [
+export const LIST_OF_AUDIO_BOOKS = [
   {
     id: 0,
     title: 'Upadek Gigantów',
@@ -74,9 +72,8 @@ export const LIST_OF_AUDIOBOOKS = [
   {
     id: 4,
     title: 'Zwierciadło piekieł',
-    img: zwierciadloPiekiel,
-    // img:
-    //   'https://dl.dropbox.com/sh/y9gaa46qe0kzoq3/AAA11Yv_lHImPKnpf5slzf95a/img/cover_2%403x.jpg',
+    img:
+      'https://dl.dropbox.com/sh/y9gaa46qe0kzoq3/AAA11Yv_lHImPKnpf5slzf95a/img/cover_2%403x.jpg',
     audio:
       'https://dl.dropbox.com/sh/y9gaa46qe0kzoq3/AADJl40luw7DLYc31GG-rygha/mp3/Zwierciadlo_piekiel-fragment.mp3',
     totalDuration: 0,
