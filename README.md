@@ -7,4 +7,6 @@ Audioteka carousel slider with audio and effects based on react-boilerplate (htt
 3.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
     _At this point you can run `npm start` to see the app at `http://localhost:3000/homepage`._
 4.  Sometime there might be a need to install `npm install terser-webpack-plugin --save-dev` for tests purpose.
-5.  
+
+## Author
+Michał Prystupiuk
