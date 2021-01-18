@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { COLORS } from 'consts';
 
 const CircleIcon = ({
@@ -17,5 +18,11 @@ const CircleIcon = ({
     <circle cx={8} cy={8} r={8} />
   </svg>
 );
+
+CircleIcon.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  color: PropTypes.string,
+};
 
 export default CircleIcon;

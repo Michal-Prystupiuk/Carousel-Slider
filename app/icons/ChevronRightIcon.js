@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { COLORS } from 'consts';
 
 const ChevronRightIcon = ({
@@ -20,5 +21,11 @@ const ChevronRightIcon = ({
     />
   </svg>
 );
+
+ChevronRightIcon.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  color: PropTypes.string,
+};
 
 export default ChevronRightIcon;

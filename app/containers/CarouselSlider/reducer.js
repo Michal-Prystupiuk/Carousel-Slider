@@ -1,12 +1,3 @@
-/*
- * HomeReducer
- *
- * The reducer takes care of our data. Using actions, we can
- * update our application state. To add a new action,
- * add it to the switch statement in the reducer function
- *
- */
-
 import produce from 'immer';
 import { LIST_OF_AUDIO_BOOKS } from 'consts';
 import { UPDATE_CURRENT_ID, UPDATE_AUDIO_DATA } from './consts';

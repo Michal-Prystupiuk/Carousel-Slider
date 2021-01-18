@@ -38,9 +38,9 @@ const AudioBookCard = ({
   ...props
 }) => {
   const { title, img } = value;
-  const width = widthInPx.replace(/px/, '');
-
   const id = useSelector(CurrentAudioBookIdSelector);
+
+  const width = widthInPx.replace(/px/, '');
 
   const isLeftCard = index === 0;
   const isMiddleCard = index === 1;

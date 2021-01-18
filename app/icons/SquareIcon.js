@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { COLORS } from 'consts';
 
 const SquareIcon = ({
@@ -17,5 +18,11 @@ const SquareIcon = ({
     <path d="M0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V2z" />
   </svg>
 );
+
+SquareIcon.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  color: PropTypes.string,
+};
 
 export default SquareIcon;
